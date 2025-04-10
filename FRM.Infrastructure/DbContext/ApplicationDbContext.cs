@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Infrastructure;
 
-public class ForumDbContext : DbContext
+public class ApplicationDbContext : DbContext
 {
     public DbSet<Forum> Forums { get; set; }
     public DbSet<Topic> Topics { get; set; }
@@ -11,14 +11,15 @@ public class ForumDbContext : DbContext
     public DbSet<User> Users { get; set; }
 
 
-    public ForumDbContext(DbContextOptions options) : base(options){}
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
     
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CommentConfiguration).Assembly); // add comment configuration
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TopicConfiguration).Assembly); // add comment configuration
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly); // add user configuration
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ForumConfiguration).Assembly); // add forum configuration
     }
     
 }

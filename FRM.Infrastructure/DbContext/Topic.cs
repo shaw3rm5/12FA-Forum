@@ -4,8 +4,8 @@ namespace Forum.Infrastructure;
 public class Topic
 {
     public Guid Id { get; set; }
-    
-    public DateTimeOffset CreatedAt { get; set; }
+
+    public DateTimeOffset CreatedAt { get; set; } 
     public DateTimeOffset? UpdatedAt { get; set; }
     
     public Guid AuthorId { get; set; }

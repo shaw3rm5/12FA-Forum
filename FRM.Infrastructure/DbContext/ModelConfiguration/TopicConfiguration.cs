@@ -27,5 +27,6 @@ public class TopicConfiguration :  IEntityTypeConfiguration<Topic>
             .HasMany(t => t.Comments)
             .WithOne(t => t.Topic)
             .HasForeignKey(t => t.TopicId); // topic has many comments
+
     }
 }

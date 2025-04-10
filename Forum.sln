@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRM.Domain", "FRM.Domain\FRM.Domain.csproj", "{A6C1D3A3-07CE-4EE1-A919-77BBFBC465BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRM.Persistence", "FRM.Persistence\FRM.Persistence.csproj", "{B378CEAC-9A7E-4653-9059-6A81EBE1FB0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRM.Infrastructure", "FRM.Infrastructure\FRM.Infrastructure.csproj", "{B378CEAC-9A7E-4653-9059-6A81EBE1FB0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRM.API", "FRM.API\FRM.API.csproj", "{5F786306-0A9B-4138-8CE2-0958298D4936}"
 EndProject

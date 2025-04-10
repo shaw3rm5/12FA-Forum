@@ -1,19 +1,15 @@
-﻿using Forum.Domain.UseCases.GetForums;
-using Forum.Infrastructure;
-using FRM.API.ResponseDtos;
+﻿using Forum.Domain.Dtos;
+using Forum.Domain.UseCases.CreateTopic;
+using Forum.Domain.UseCases.GetForums;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
 namespace FRM.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class ForumController : ControllerBase
 {
-    
     public ForumController()
     {
-        
     }
 
     
@@ -28,5 +24,15 @@ public class ForumController : ControllerBase
         return Ok(forums);
 
     }
-    
+
+    [HttpPost]
+    public async Task<IActionResult> Post(
+        [FromBody] Dtos.TopicDto topicDto,
+        [FromServices] ICreateTopicUseCase topicCreateUseCase,
+        CancellationToken cancellationToken)
+    {
+        await topicCreateUseCase.Execute(topicDto.ForumId, topicDto.Title, topicDto.UserId, cancellationToken);
+        return NoContent();
+        
+    }
 }

@@ -1,29 +1,33 @@
 ﻿using Forum.Domain.Dtos;
 using Forum.Domain.Exceptions;
 using Forum.Infrastructure;
+using Forum.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Domain.UseCases.CreateTopic;
 
 public class CreateTopicUseCase : ICreateTopicUseCase
 {
-    private readonly ForumDbContext _dbContext;
+    private readonly IRepository<Topic> _repository;
+    private readonly IRepository<Infrastructure.Forum> _forumRepository;
     private readonly IGuidFactory _guidFactory;
     private readonly IMomentProvider _momentProvider;
 
     public CreateTopicUseCase(
-        ForumDbContext dbContext,
+        IRepository<Topic> repository,
         IGuidFactory guidFactory,
-        IMomentProvider momentProvider)
+        IMomentProvider momentProvider,
+        IRepository<Infrastructure.Forum> forumRepository)
     {
-        _dbContext = dbContext;
+        _repository = repository;
         _guidFactory = guidFactory;
         _momentProvider = momentProvider;
+        _forumRepository = forumRepository;
     }
     
     public async Task<TopicDto> Execute(Guid forumId, string title, Guid userId, CancellationToken ct)
     {
-        var forumExist = await _dbContext.Forums.AnyAsync(f => f.Id == forumId, ct);
+        var forumExist = await _forumRepository.AnyAsync(f => f.Id == forumId, ct);
         if (!forumExist)
         {
             throw new ForumNotFindException(forumId);
@@ -31,18 +35,17 @@ public class CreateTopicUseCase : ICreateTopicUseCase
         
         var topicId = _guidFactory.CreateGuid();
         
-        await  _dbContext.Topics.AddAsync( new Topic()
+        await _repository.AddAsync(new Topic()
         {
             Id = topicId,
             ForumId = forumId,
             Title = title,
             AuthorId = userId,
+            CreatedAt = _momentProvider.Now,
         }, ct);
-        await _dbContext.SaveChangesAsync(ct);
 
 
-        return await _dbContext.Topics
-            .AsNoTracking()
+        return await _repository
             .Where(t => t.Id == topicId)
             .Select(t => new TopicDto
             {
@@ -50,7 +53,7 @@ public class CreateTopicUseCase : ICreateTopicUseCase
                 ForumId = t.ForumId,
                 Title = t.Title,
                 Author = t.Author.UserName,
-                CreatedAt = _momentProvider.Now,
+                CreatedAt = t.CreatedAt
             })
             .FirstAsync(ct);
         
