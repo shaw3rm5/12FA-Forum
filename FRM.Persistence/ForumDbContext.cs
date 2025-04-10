@@ -11,7 +11,7 @@ public class ForumDbContext : DbContext
     public DbSet<User> Users { get; set; }
 
 
-    public ForumDbContext(DbContextOptions<ForumDbContext> options) : base(options){}
+    public ForumDbContext(DbContextOptions options) : base(options){}
     
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

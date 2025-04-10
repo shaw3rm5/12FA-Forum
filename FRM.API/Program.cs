@@ -1,17 +1,18 @@
-
-
+using Forum.Domain.UseCases.GetForums;
 using Forum.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("Postgres");
+
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IGetForumsUseCase, GetForumsUseCase>();
 builder.Services.AddDbContextPool<ForumDbContext>(options =>
 {
     options
-        .UseNpgsql("Host=localhost;Port=5439;Database=forum;Username=postgres;Password=postgres");
+        .UseNpgsql(connectionString);
 });
 
 var app = builder.Build();

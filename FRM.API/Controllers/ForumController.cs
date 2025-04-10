@@ -1,4 +1,6 @@
-﻿using Forum.Infrastructure;
+﻿using Forum.Domain.UseCases.GetForums;
+using Forum.Infrastructure;
+using FRM.API.ResponseDtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,13 +20,12 @@ public class ForumController : ControllerBase
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
     public async Task<IActionResult> Get(
-        [FromServices] ForumDbContext dbContext,
+        [FromServices] IGetForumsUseCase useCase,
         CancellationToken cancellationToken)
     {
 
-        var titles = await dbContext.Forums.Select(f => f.Title).ToArrayAsync(cancellationToken);
-        
-        return Ok(titles);
+        var forums = await useCase.Execute(cancellationToken);
+        return Ok(forums);
 
     }
     
