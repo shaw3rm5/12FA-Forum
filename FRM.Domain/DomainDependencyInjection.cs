@@ -8,7 +8,6 @@ public static class DomainDependencyInjection
 {
     public static IServiceCollection AddDomainDependencies(this IServiceCollection service)
     {
-        service.AddScoped<IMomentProvider, MomentProvider>();
         service.AddScoped<IGetForumsUseCase, GetForumsUseCase>();
         service.AddTransient<IGuidFactory, GuidFactory>();
         service.AddTransient<IMomentProvider, MomentProvider>(); 
