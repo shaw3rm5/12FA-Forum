@@ -11,12 +11,9 @@ var connectionString = builder.Configuration.GetConnectionString("Postgres");
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IGetForumsUseCase, GetForumsUseCase>();
-builder.Services.AddTransient<IGuidFactory, GuidFactory>();
-builder.Services.AddTransient<IMomentProvider, MomentProvider>();
-builder.Services.AddScoped<ICreateTopicUseCase, CreateTopicUseCase>();
 
-builder.Services.AddDataAccess<ApplicationDbContext, ApplicationDbContextConfigurator>();
+builder.Services.AddDomainDependencies();
+builder.Services.AddInfrastructureDependencies();
 
 var app = builder.Build();
 
