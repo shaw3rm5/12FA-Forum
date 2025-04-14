@@ -38,17 +38,6 @@ public class Repository<TEntity> : IRepository<TEntity>
         }
         await SaveChangesAsync(cancellationToken);
     }
-
-    public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
-    {
-        return DbSet.AnyAsync(predicate, cancellationToken);
-    }
-
-    public IQueryable<TResult> Select<TResult>(Expression<Func<TEntity, TResult>> selector)
-    {
-        return DbSet.Select(selector);
-    }
-
     public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate)
     {
         return DbSet.Where(predicate);

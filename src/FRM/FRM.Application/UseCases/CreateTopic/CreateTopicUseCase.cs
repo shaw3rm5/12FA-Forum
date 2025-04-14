@@ -1,7 +1,8 @@
-﻿using Forum.Application.Authentication;
+﻿using Domain.Models;
+using Forum.Application.Authentication;
 using Forum.Application.Authorization;
+using Forum.Application.Dtos;
 using Forum.Application.Exceptions;
-using Forum.Infrastructure;
 
 namespace Forum.Application.UseCases.CreateTopic;
 
@@ -21,8 +22,11 @@ public class CreateTopicUseCase : ICreateTopicUseCase
         _storage = storage;
     }
     
-    public async Task<Topic> Execute(Guid forumId, string title, CancellationToken ct)
+     
+    
+    public async Task<TopicDto> Execute(Guid forumId, string title, CancellationToken ct)
     {
+        _identityProvider.Current.UserId = Guid.Parse("f5eefe5c-53ee-4dfa-a8ea-9c0a3e9c4427");
         _intentionManager.ThrowIfForbidden(TopicIntention.Create);
         
         var forumExist = await _storage.ForumExists(forumId, ct);
@@ -31,7 +35,7 @@ public class CreateTopicUseCase : ICreateTopicUseCase
             throw new ForumNotFindException(forumId);
         }
         
-        return await _storage.CreateTopic(forumId, _identityProvider.Current.UserId, title, ct);
+        return await _storage.CreateTopic(forumId,_identityProvider.Current.UserId , title, ct);
         
     }
 }

@@ -1,11 +1,11 @@
-﻿using Forum.Infrastructure.ModelConfiguration;
+﻿using Domain.Models;
+using Forum.Infrastructure.ModelConfiguration;
 using Microsoft.EntityFrameworkCore;
-
 namespace Forum.Infrastructure;
 
 public class ApplicationDbContext : DbContext
 {
-    public DbSet<Forum> Forums { get; set; }
+    public DbSet<Domain.Models.Forum> Forums { get; set; }
     public DbSet<Topic> Topics { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<User> Users { get; set; }

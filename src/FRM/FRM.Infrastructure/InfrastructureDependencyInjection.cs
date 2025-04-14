@@ -1,4 +1,6 @@
-﻿using Forum.Infrastructure.Repository;
+﻿using Forum.Infrasctructure;
+using Forum.Infrasctructure.Repository;
+using Forum.Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Forum.Infrastructure;

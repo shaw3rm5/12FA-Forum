@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDomainDependencies();
+builder.Services.AddApplicationDependencies();
 builder.Services.AddInfrastructureDependencies();
 
 var app = builder.Build();

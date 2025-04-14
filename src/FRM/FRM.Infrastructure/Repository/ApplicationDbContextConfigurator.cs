@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Forum.Infrastructure;
+using Forum.Infrastructure.Repository;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Forum.Infrastructure.Repository;
+namespace Forum.Infrasctructure.Repository;
 
 public class ApplicationDbContextConfigurator : DbContextOptionsConfigurator<ApplicationDbContext>
 {

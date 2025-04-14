@@ -1,5 +1,4 @@
-﻿
-namespace Forum.Infrastructure;
+﻿namespace Domain.Models;
 
 public class User
 {

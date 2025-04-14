@@ -1,6 +1,4 @@
-﻿
-namespace Forum.Infrastructure;
-
+﻿namespace Domain.Models;
 public class Topic
 {
     public Guid Id { get; set; }

@@ -1,21 +1,21 @@
+using Domain.Models;
 using FluentAssertions;
 using Forum.Application.Authentication;
 using Forum.Application.Authorization;
+using Forum.Application.Dtos;
 using Forum.Application.Exceptions;
 using Forum.Application.UseCases.CreateTopic;
-using Forum.Infrastructure;
-using Forum.Infrastructure.ModelConfiguration;
 using Moq;
 using Moq.Language.Flow;
 
-namespace FRM.Domain.Tests;
+namespace FRM.Application.Tests;
 
 public class CreateTopicUseCaseShould
 {
     private readonly CreateTopicUseCase _sut;
     private readonly Mock<ICreateTopicStorage> storage;
     private readonly ISetup<ICreateTopicStorage, Task<bool>> forumExistSetup;
-    private readonly ISetup<ICreateTopicStorage, Task<Topic>> createTopicSetup;
+    private readonly ISetup<ICreateTopicStorage, Task<TopicDto>> createTopicSetup;
     private readonly ISetup<IIdentity, Guid> getCurrentUserIdSetop;
     private readonly ISetup<IIntentionManager, bool> intentionManagerSetup;
     private readonly Mock<IIntentionManager> intentionManager;
@@ -78,7 +78,7 @@ public class CreateTopicUseCaseShould
         intentionManagerSetup.Returns(true);
         forumExistSetup.ReturnsAsync(true);
         getCurrentUserIdSetop.Returns(authorId);
-        var excepted = new Topic();
+        var excepted = new TopicDto();
         createTopicSetup.ReturnsAsync(excepted);
         
 

@@ -6,21 +6,12 @@ namespace Forum.Application.UseCases.GetForums;
 
 public class GetForumsUseCase : IGetForumsUseCase
 {
-    private readonly IRepository<Infrastructure.Forum> _repository;
+    private readonly IGetForumStorage _storage;
 
-    public GetForumsUseCase(IRepository<Infrastructure.Forum> repository )
+    public GetForumsUseCase(IGetForumStorage storage)
     {
-        _repository = repository;
+        _storage = storage;
     }
-    
-    public async Task<IEnumerable<ForumDto>> Execute(CancellationToken ct)
-    {
-        return await _repository
-            .Select(f => new ForumDto
-            {
-                Id = f.Id,
-                Title = f.Title,
-            })
-            .ToArrayAsync(ct);
-    }
+
+    public async Task<IEnumerable<ForumDto>> Execute(CancellationToken ct) => await _storage.GetForums(ct);
 }
