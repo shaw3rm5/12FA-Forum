@@ -6,5 +6,5 @@ namespace Forum.Application.UseCases.CreateTopic;
 
 public interface ICreateTopicUseCase
 {
-    public Task<TopicDto> Execute(Guid forumId, string title, CancellationToken ct);
+    public Task<TopicDto> Execute(CreateTopicCommand command, CancellationToken ct);
 }

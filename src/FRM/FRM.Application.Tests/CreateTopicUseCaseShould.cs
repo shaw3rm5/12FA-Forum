@@ -1,5 +1,7 @@
 using Domain.Models;
 using FluentAssertions;
+using FluentValidation;
+using FluentValidation.Results;
 using Forum.Application.Authentication;
 using Forum.Application.Authorization;
 using Forum.Application.Dtos;
@@ -19,6 +21,7 @@ public class CreateTopicUseCaseShould
     private readonly ISetup<IIdentity, Guid> getCurrentUserIdSetop;
     private readonly ISetup<IIntentionManager, bool> intentionManagerSetup;
     private readonly Mock<IIntentionManager> intentionManager;
+    private readonly Mock<IValidator<CreateTopicCommand>> _validator;
 
     public CreateTopicUseCaseShould()
     {
@@ -27,7 +30,11 @@ public class CreateTopicUseCaseShould
         var identity = new Mock<IIdentity>();
         var identityProvider = new Mock<IIdentityProvider>();
         intentionManager = new Mock<IIntentionManager>();
+        _validator =  new Mock<IValidator<CreateTopicCommand>>();
         
+        _validator.Setup(x => x.ValidateAsync(It.IsAny<CreateTopicCommand>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(new ValidationResult());
         identityProvider.Setup(p => p.Current).Returns(identity.Object);
         getCurrentUserIdSetop = identity.Setup(s => s.UserId);
         intentionManagerSetup = intentionManager.Setup(s => s.IsAllowed(It.IsAny<TopicIntention>()));
@@ -37,7 +44,7 @@ public class CreateTopicUseCaseShould
             s.CreateTopic(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<CancellationToken>()));
         
         
-        _sut = new CreateTopicUseCase(intentionManager.Object, identityProvider.Object, storage.Object);
+        _sut = new CreateTopicUseCase(_validator.Object,intentionManager.Object, identityProvider.Object, storage.Object);
     }
     
     [Fact]
@@ -49,7 +56,7 @@ public class CreateTopicUseCaseShould
         intentionManagerSetup.Returns(true);
         forumExistSetup.ReturnsAsync(false);
 
-        await _sut.Invoking(s => s.Execute(forumId, "Hello World", CancellationToken.None))
+        await _sut.Invoking(s => s.Execute(new CreateTopicCommand(forumId, "Hello World"), CancellationToken.None))
             .Should().ThrowAsync<ForumNotFindException>();
         
         storage.Verify(s => s.ForumExists(forumId, It.IsAny<CancellationToken>()));
@@ -63,7 +70,7 @@ public class CreateTopicUseCaseShould
 
         intentionManagerSetup.Returns(false);
 
-        await _sut.Invoking(s => s.Execute(forumId, "Hello World", CancellationToken.None))
+        await _sut.Invoking(s => s.Execute(new CreateTopicCommand(forumId, "Hello World"), CancellationToken.None))
             .Should().ThrowAsync<IntentionManagerException>();
         intentionManager.Verify(s => s.IsAllowed(TopicIntention.Create));
 
@@ -83,7 +90,7 @@ public class CreateTopicUseCaseShould
         
 
         
-        var actual = await _sut.Execute(forumId, "Hello World", CancellationToken.None);
+        var actual = await _sut.Execute(new CreateTopicCommand(forumId, "Hello World"), CancellationToken.None);
         actual.Should().Be(excepted);
         storage.Verify(s => s.CreateTopic(forumId, authorId, "Hello World", It.IsAny<CancellationToken>()), Times.Once);
         

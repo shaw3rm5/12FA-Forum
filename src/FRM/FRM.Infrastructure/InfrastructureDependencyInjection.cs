@@ -1,5 +1,4 @@
-﻿using Forum.Infrasctructure;
-using Forum.Infrasctructure.Repository;
+﻿using Forum.Infrasctructure.Repository;
 using Forum.Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +10,7 @@ public static class InfrastructureDependencyInjection
     {
         service
             .AddDataAccess<ApplicationDbContext, ApplicationDbContextConfigurator>();
-        
+
         return service;
         
         // loading...

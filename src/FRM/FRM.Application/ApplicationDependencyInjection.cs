@@ -1,4 +1,5 @@
-﻿using Forum.Application.Authentication;
+﻿using FluentValidation;
+using Forum.Application.Authentication;
 using Forum.Application.Authorization;
 using Forum.Application.Storage;
 using Forum.Application.UseCases.CreateTopic;
@@ -20,6 +21,7 @@ public static class ApplicationDependencyInjection
             .AddScoped<IIntentionManager, IntentionManager>()
             .AddScoped<IIntentionResolver, TopicIntentionResolver>()
             .AddScoped<IIdentityProvider, IdentityProvider>()
+            .AddValidatorsFromAssemblyContaining<CreateTopicUseCase>()
             .AddScoped<IGetForumStorage, GetForumStorage>();
         
         return service;
