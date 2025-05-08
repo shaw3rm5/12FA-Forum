@@ -1,5 +1,6 @@
 ﻿using Forum.Application.UseCases.CreateTopic;
 using Forum.Application.UseCases.GetForums;
+using Forum.Application.UseCases.GetTopics;
 using Microsoft.AspNetCore.Mvc;
 namespace FRM.API.Controllers;
 
@@ -21,7 +22,7 @@ public class ForumController : ControllerBase
 
     }
 
-    [HttpPost("topics")]
+    [HttpPost("topic")]
     [ProducesResponseType(400)]
     [ProducesResponseType(403)]
     [ProducesResponseType(410)]
@@ -33,6 +34,17 @@ public class ForumController : ControllerBase
     {
         await useCase.Execute(topic, cancellationToken);
         return Created();
+    }
+
+
+    [HttpGet("topics")]
+    public async Task<IActionResult> GetTopics(
+        [FromServices] IGetTopicsUseCase useCase,
+        [FromQuery] GetTopicsCommand topics, 
+        CancellationToken cancellationToken)
+    {
+        var result = await useCase.Execute(topics, cancellationToken);
+        return Ok(result.resources);
     }
     
 }

@@ -6,13 +6,10 @@ namespace Forum.Infrastructure;
 
 public static class InfrastructureDependencyInjection
 {
-    public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection service)
+    public static void AddInfrastructureDependencies(this IServiceCollection service)
     {
         service
             .AddDataAccess<ApplicationDbContext, ApplicationDbContextConfigurator>();
-
-        return service;
-        
         // loading...
     }
 }

@@ -23,7 +23,7 @@ public static class ProblemDetailsFactoryExstension
     {
         return factory.CreateProblemDetails(httpContext, applicationLayerException.ErrorCode switch
         {
-            ErrorCodes.Gone => StatusCodes.Status410Gone,
+            ErrorCodes.Gone => StatusCodes.Status410Gone,   
             _ => StatusCodes.Status500InternalServerError,
         }, applicationLayerException.Message);
         

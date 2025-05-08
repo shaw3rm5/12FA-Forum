@@ -1,11 +1,11 @@
 ﻿using Serilog;
 using Serilog.Filters;
 
-namespace FRM.API;
+namespace FRM.API.Exstensions;
 
 public static class LoggerRegistrator
 {
-    public static IServiceCollection AddLoggerDependency(this IServiceCollection services, IConfiguration configuration)
+    public static void AddLoggerDependency(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddLogging(l => l.AddSerilog(
             new LoggerConfiguration()
@@ -20,6 +20,5 @@ public static class LoggerRegistrator
                 .WriteTo.Logger(lc => lc.WriteTo.Console())
                 .CreateLogger()
         ));
-        return services;
     }
 }

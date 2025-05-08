@@ -1,3 +1,3 @@
 ﻿namespace FRM.API.Dtos;
 
-public record TopicDto(Guid ForumId, Guid UserId, string Title);
+public record TopicDto(Guid ForumId, Guid UserId, Guid TopicId, string Title);

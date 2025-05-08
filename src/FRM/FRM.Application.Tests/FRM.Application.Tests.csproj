@@ -7,7 +7,7 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <RootNamespace>FRM.Domain.Tests</RootNamespace>
+        <RootNamespace>FRM.Application.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
