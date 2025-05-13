@@ -25,13 +25,6 @@ public class CreateTopicStorage : ICreateTopicStorage
         _guidFactory = guidFactory;
         _momentProvider = momentProvider;
     }
-    
-    public async Task<bool> ForumExists(Guid forumId, CancellationToken cancellationToken)
-    {
-        return await _forumRepository
-            .AsQueryable()
-            .AnyAsync(f => f.Id == forumId, cancellationToken);
-    }
 
     public async Task<TopicDto> CreateTopic(Guid forumId, Guid authorId, string title, CancellationToken cancellationToken)
     {
@@ -49,6 +42,7 @@ public class CreateTopicStorage : ICreateTopicStorage
         
         return await _topicRepository
             .AsQueryable()
+            .AsNoTracking()
             .Where(f => f.Id == topic.Id)
             .Select(t => new TopicDto()
             {

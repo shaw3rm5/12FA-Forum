@@ -2,5 +2,6 @@
 
 public enum ErrorCodes
 {
-    Gone = 410
+    Gone = 410,
+    NotFound = 404
 }

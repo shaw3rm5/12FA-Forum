@@ -1,6 +1,5 @@
-﻿using Domain.Models;
-using FluentValidation;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using FluentValidation;
+using Forum.Application.Dtos;
 
 namespace Forum.Application.UseCases.GetTopics;
 
@@ -17,12 +16,12 @@ public class GetTopicsUseCase : IGetTopicsUseCase
         _storage = storage;
     }
     
-    public async Task<(IEnumerable<Topic> resources, int totalCount)> Execute(GetTopicsCommand command, CancellationToken cancellationToken)
+    public async Task<(IEnumerable<TopicDto> resources, int totalCount)> Execute(GetTopicsCommand command, CancellationToken cancellationToken)
     {
         await _validator.ValidateAndThrowAsync(command, cancellationToken);
         
         var topics = await _storage.GetTopicsAsync(command.ForumId, command.Skip, command.Take, cancellationToken);
-
+        
         return (topics, topics.Count());
 
     }

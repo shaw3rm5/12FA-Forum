@@ -1,5 +1,4 @@
-﻿
-using Forum.Application.Dtos;
+﻿using Forum.Application.Dtos;
 
 namespace Forum.Application.UseCases.GetForums;
 

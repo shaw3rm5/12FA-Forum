@@ -9,7 +9,7 @@ public class GetTopicsCommandValidator : AbstractValidator<GetTopicsCommand>
     {
         RuleFor(c => c.ForumId).NotEmpty().WithErrorCode(ValidationErrors.Empty);
         RuleFor(c => c.Skip).GreaterThanOrEqualTo(0).WithErrorCode(ValidationErrors.Invalid);
-        RuleFor(c => c.Take).GreaterThanOrEqualTo(1).WithMessage(ValidationErrors.Invalid);
+        RuleFor(c => c.Take).GreaterThanOrEqualTo(1).WithErrorCode(ValidationErrors.Invalid);
     }
     
 }

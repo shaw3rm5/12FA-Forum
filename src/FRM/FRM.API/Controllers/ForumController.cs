@@ -43,8 +43,8 @@ public class ForumController : ControllerBase
         [FromQuery] GetTopicsCommand topics, 
         CancellationToken cancellationToken)
     {
-        var result = await useCase.Execute(topics, cancellationToken);
-        return Ok(result.resources);
+        var (result, totalCount) = await useCase.Execute(topics, cancellationToken);
+        return Ok(new {result, totalCount});
     }
     
 }

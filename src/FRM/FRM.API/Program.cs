@@ -1,7 +1,6 @@
 using Forum.Application;
 using Forum.Infrastructure;
-using FRM.API;
-using FRM.API.Exstensions;
+using FRM.API.Extensions;
 using FRM.API.Middlewares;
 
 

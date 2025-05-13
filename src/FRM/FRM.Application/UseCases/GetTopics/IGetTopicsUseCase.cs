@@ -1,9 +1,9 @@
-﻿using Domain.Models;
+﻿using Forum.Application.Dtos;
 
 namespace Forum.Application.UseCases.GetTopics;
 
 public interface IGetTopicsUseCase
 {
-    public Task<(IEnumerable<Topic> resources, int totalCount)> Execute(
+    public Task<(IEnumerable<TopicDto> resources, int totalCount)> Execute(
         GetTopicsCommand command, CancellationToken cancellationToken);
 }

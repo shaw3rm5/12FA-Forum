@@ -24,9 +24,5 @@ public class GetTopicsUseCaseShould
         _sut = new GetTopicsUseCase(validator.Object, storage.Object);
     }
     
-    [Fact]
-    public async Task ReturnTopicsExtractedFromDatabase()
-    {
-        
-    }
+    
 }

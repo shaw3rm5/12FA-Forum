@@ -15,17 +15,33 @@ public static class ApplicationDependencyInjection
     {
         service
             .AddTransient<IGuidFactory, GuidFactory>()
-            .AddTransient<IMomentProvider, MomentProvider>()
+            .AddTransient<IMomentProvider, MomentProvider>();
+        
+        //storages
+        service
+            .AddScoped<ICreateTopicStorage, CreateTopicStorage>()
+            .AddScoped<IGetForumStorage, GetForumStorage>()
+            .AddScoped<IGetTopicsStorage, GetTopicsStorage>();
+
+        // useCaseses
+        service
             .AddScoped<IGetForumsUseCase, GetForumsUseCase>()
             .AddScoped<ICreateTopicUseCase, CreateTopicUseCase>()
-            .AddScoped<ICreateTopicStorage, CreateTopicStorage>()
-            .AddScoped<IGetTopicsUseCase, GetTopicsUseCase>()
-            .AddScoped<IGetTopicsStorage, GetTopicsStorage>()
+            .AddScoped<IGetTopicsUseCase, GetTopicsUseCase>();
+
+        // useCase validations
+        service
+            .AddValidatorsFromAssemblyContaining<GetTopicsUseCase>()
+            .AddValidatorsFromAssemblyContaining<CreateTopicUseCase>();
+        
+        // identification
+        service
             .AddScoped<IIntentionManager, IntentionManager>()
             .AddScoped<IIntentionResolver, TopicIntentionResolver>()
-            .AddScoped<IIdentityProvider, IdentityProvider>()
-            .AddValidatorsFromAssemblyContaining<CreateTopicUseCase>()
-            .AddValidatorsFromAssemblyContaining<GetTopicsUseCase>()
-            .AddScoped<IGetForumStorage, GetForumStorage>();
+            .AddScoped<IIdentityProvider, IdentityProvider>();
+
+        service
+            .AddMemoryCache();
+
     }
 }

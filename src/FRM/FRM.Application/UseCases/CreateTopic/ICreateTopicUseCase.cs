@@ -1,10 +1,8 @@
-﻿using Domain.Models;
-using Forum.Application.Dtos;
-using Forum.Infrastructure;
+﻿using Forum.Application.Dtos;
 
 namespace Forum.Application.UseCases.CreateTopic;
 
 public interface ICreateTopicUseCase
 {
-    public Task<TopicDto> Execute(CreateTopicCommand command, CancellationToken ct);
+    public Task<TopicDto> Execute(CreateTopicCommand command, CancellationToken cancellationToken);
 }

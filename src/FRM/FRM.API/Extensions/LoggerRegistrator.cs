@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using Serilog.Filters;
 
-namespace FRM.API.Exstensions;
+namespace FRM.API.Extensions;
 
 public static class LoggerRegistrator
 {

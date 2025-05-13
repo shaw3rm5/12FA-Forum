@@ -8,9 +8,13 @@ public class TopicConfiguration :  IEntityTypeConfiguration<Topic>
 {
     public void Configure(EntityTypeBuilder<Topic> topicBuilder)
     {
-        
+
         topicBuilder
             .HasKey(x => x.Id);
+        topicBuilder.Property(x => x.Title)
+            .HasMaxLength(100)
+            .IsRequired()
+            .HasColumnType("varchar(100)");
         
         topicBuilder
             .HasOne(t => t.Author)

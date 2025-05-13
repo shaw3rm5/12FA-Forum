@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FRM.API.Middlewares;
 
-public static class ProblemDetailsFactoryExstension
+public static class ProblemDetailsFactoryExtension
 {
     public static ProblemDetails CreateFrom(this ProblemDetailsFactory factory, HttpContext httpContext,
         IntentionManagerException intentionManagerException)
@@ -24,6 +24,7 @@ public static class ProblemDetailsFactoryExstension
         return factory.CreateProblemDetails(httpContext, applicationLayerException.ErrorCode switch
         {
             ErrorCodes.Gone => StatusCodes.Status410Gone,   
+            ErrorCodes.NotFound => StatusCodes.Status404NotFound,
             _ => StatusCodes.Status500InternalServerError,
         }, applicationLayerException.Message);
         
@@ -40,7 +41,7 @@ public static class ProblemDetailsFactoryExstension
             modelStateDictionary.AddModelError(error.PropertyName, error.ErrorCode);
         }
         return factory.CreateValidationProblemDetails(httpContext, modelStateDictionary,
-            StatusCodes.Status403Forbidden,
-            "Authorization Failed", detail: validationException.Message);
+            StatusCodes.Status400BadRequest,
+            "Invalid Request", detail: validationException.Message);
     }
 }
