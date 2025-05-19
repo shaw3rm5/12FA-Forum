@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRM.Application.Tests", "FR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRM.Domain", "FRM.Domain\FRM.Domain.csproj", "{82C9A068-7AC6-4CA9-8ABF-4F2F17EC3192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRM.E2E", "FRM.E2E\FRM.E2E.csproj", "{97E85DBD-C048-4334-9786-4896D5BAC90D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,5 +45,9 @@ Global
 		{82C9A068-7AC6-4CA9-8ABF-4F2F17EC3192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82C9A068-7AC6-4CA9-8ABF-4F2F17EC3192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82C9A068-7AC6-4CA9-8ABF-4F2F17EC3192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97E85DBD-C048-4334-9786-4896D5BAC90D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97E85DBD-C048-4334-9786-4896D5BAC90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97E85DBD-C048-4334-9786-4896D5BAC90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97E85DBD-C048-4334-9786-4896D5BAC90D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

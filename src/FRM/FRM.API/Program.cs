@@ -22,3 +22,5 @@ app.UseSwaggerUI();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.Run();
+
+public partial class Program { } 

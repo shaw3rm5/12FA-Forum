@@ -1,6 +1,9 @@
-﻿using Forum.Application.UseCases.CreateTopic;
+﻿using Domain.Models;
+using Forum.Application.UseCases.CreateForum;
+using Forum.Application.UseCases.CreateTopic;
 using Forum.Application.UseCases.GetForums;
 using Forum.Application.UseCases.GetTopics;
+using FRM.API.ResponseDtos;
 using Microsoft.AspNetCore.Mvc;
 namespace FRM.API.Controllers;
 
@@ -9,10 +12,26 @@ namespace FRM.API.Controllers;
 public class ForumController : ControllerBase
 {
 
+
+    [HttpPost]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(403)]
+    [ProducesResponseType(201)]
+    
+    public async Task<IActionResult> CreateForum(
+        [FromServices] ICreateForumUseCase useCase,
+        [FromBody] ForumCreateCommand createCommand,
+        CancellationToken cancellationToken)
+    {
+        var newForum = await useCase.Execute(createCommand, cancellationToken);
+        return CreatedAtRoute(nameof(GetForums), newForum);
+    }
+    
     
     [HttpGet(Name = "GetForums")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
-    public async Task<IActionResult> Get(
+    [ProducesResponseType(410)]
+    public async Task<IActionResult> GetForums(
         [FromServices] IGetForumsUseCase useCase,
         CancellationToken cancellationToken)
     {
@@ -38,6 +57,11 @@ public class ForumController : ControllerBase
 
 
     [HttpGet("topics")]
+    
+    [ProducesResponseType(400)]
+    [ProducesResponseType(403)]
+    [ProducesResponseType(410)]
+    [ProducesResponseType(200)]
     public async Task<IActionResult> GetTopics(
         [FromServices] IGetTopicsUseCase useCase,
         [FromQuery] GetTopicsCommand topics, 
