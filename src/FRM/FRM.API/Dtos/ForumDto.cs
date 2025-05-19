@@ -1,7 +1,3 @@
-﻿namespace FRM.API.ResponseDtos;
+﻿namespace FRM.API.Dtos;
 
-public record ForumDto
-{
-    public Guid Id { get; set; } 
-    public string Title { get; set; }
-}
+public record ForumDto(Guid Id, string Title);

@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
 using FluentAssertions;
-using FRM.API.ResponseDtos;
+using FRM.API.Dtos;
 
 namespace FRM.E2E
 {

@@ -3,7 +3,6 @@ using Forum.Application.UseCases.CreateForum;
 using Forum.Application.UseCases.CreateTopic;
 using Forum.Application.UseCases.GetForums;
 using Forum.Application.UseCases.GetTopics;
-using FRM.API.ResponseDtos;
 using Microsoft.AspNetCore.Mvc;
 namespace FRM.API.Controllers;
 
