@@ -10,7 +10,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         userBuilder
             .HasKey(u => u.Id);
-        
+
         userBuilder
             .HasMany(c => c.Comments)
             .WithOne(c => c.Author)
@@ -22,7 +22,14 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey(t => t.AuthorId);
         
         userBuilder
-            .Property(c => c.UserName)
+            .Property(u => u.Salt)
+            .HasMaxLength(120);
+        userBuilder
+            .Property(u =>  u.PasswordHash)
+            .HasMaxLength(300);
+        
+        userBuilder
+            .Property(c => c.Login)
             .IsRequired()
             .HasMaxLength(20);
     }

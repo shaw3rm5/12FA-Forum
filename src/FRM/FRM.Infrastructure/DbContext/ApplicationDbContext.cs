@@ -18,9 +18,6 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CommentConfiguration).Assembly); // add comment configuration
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(TopicConfiguration).Assembly); // add comment configuration
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly); // add user configuration
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ForumConfiguration).Assembly); // add forum configuration
     }
     
 }

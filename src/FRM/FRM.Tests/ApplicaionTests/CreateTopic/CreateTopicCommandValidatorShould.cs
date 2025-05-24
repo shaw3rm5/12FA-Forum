@@ -1,12 +1,11 @@
 ﻿using FluentAssertions;
 using FluentValidation;
-using FluentValidation.Results;
 using Forum.Application.UseCases.CreateTopic;
 using Moq;
 
-namespace FRM.Application.Tests;
+namespace FRM.Tests.ApplicaionTests.CreateTopic;
 
-public class CreteTopicCommandValidatorShould
+public class CreateTopicCommandValidatorShould
 {
     private readonly CreateTopicCommandValidator _sut = new();
     private readonly Mock<IValidator<CreateTopicCommand>> _validator;

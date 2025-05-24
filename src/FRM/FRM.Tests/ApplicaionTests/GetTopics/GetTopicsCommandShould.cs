@@ -1,8 +1,7 @@
-﻿using Domain.Models;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Forum.Application.UseCases.GetTopics;
 
-namespace FRM.Application.Tests.GetTopics;
+namespace FRM.Tests.ApplicaionTests.GetTopics;
 
 public class GetTopicsCommandShould
 {

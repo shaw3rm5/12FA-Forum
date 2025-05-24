@@ -1,4 +1,3 @@
-using Domain.Models;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
@@ -11,7 +10,7 @@ using Forum.Application.UseCases.GetForums;
 using Moq;
 using Moq.Language.Flow;
 
-namespace FRM.Application.Tests;
+namespace FRM.Tests.ApplicaionTests.CreateTopic;
 
 public class CreateTopicUseCaseShould
 {

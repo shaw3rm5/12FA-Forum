@@ -28,8 +28,6 @@ public class CreateTopicUseCase : ICreateTopicUseCase
         _forumStorage = forumStorage;
     }
     
-     
-    
     public async Task<TopicDto> Execute(CreateTopicCommand command, CancellationToken cancellationToken)
     {
         await _validator.ValidateAndThrowAsync(command, cancellationToken);

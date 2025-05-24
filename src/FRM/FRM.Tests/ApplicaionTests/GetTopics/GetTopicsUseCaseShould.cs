@@ -3,7 +3,7 @@ using FluentValidation.Results;
 using Forum.Application.UseCases.GetTopics;
 using Moq;
 
-namespace FRM.Application.Tests.GetTopics;
+namespace FRM.Tests.ApplicaionTests.GetTopics;
 
 public class GetTopicsUseCaseShould
 {

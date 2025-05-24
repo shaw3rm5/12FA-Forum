@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Testcontainers.PostgreSql;
 
-
-
-namespace FRM.E2E;
+namespace FRM.Tests.E2E;
 
 public class ForumApiApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {

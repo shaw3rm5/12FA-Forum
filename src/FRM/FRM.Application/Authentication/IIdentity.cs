@@ -5,9 +5,9 @@ public interface IIdentity
     Guid UserId { get; set; }
 }
 
-public class User : IIdentity
+public class UserIdentity : IIdentity
 {
-    public User(Guid userId)
+    public UserIdentity(Guid userId)
     {
         UserId = userId;
     }
@@ -18,5 +18,5 @@ public class User : IIdentity
 
 public static class IdentityExtensions
 {
-    public static bool IsAuthenticated(this IIdentity subject) => subject.UserId == Guid.Parse("f5eefe5c-53ee-4dfa-a8ea-9c0a3e9c4427");
+    public static bool IsAuthenticated(this IIdentity subject) => subject.UserId != Guid.Empty;
 }
