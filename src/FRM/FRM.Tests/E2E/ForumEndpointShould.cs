@@ -32,7 +32,7 @@ namespace FRM.Tests.E2E
             
             using var response = await client.PostAsync("/forum", JsonContent.Create(new
             {
-                Title = "GOVNOSOS"
+                Title = "some title"
             }));
             
             response.Invoking(r => r.EnsureSuccessStatusCode()).Should().NotThrow();
@@ -41,18 +41,8 @@ namespace FRM.Tests.E2E
             var forum = await response.Content.ReadFromJsonAsync<ForumDto>();
             
             forum!
-                .Title.Should().Be("GOVNOSOS");
+                .Title.Should().Be("some title");
             
-            
-            // using var getForumsResponse = await client.GetAsync("/Forum");
-            //
-            // getForumsResponse.Invoking(r => r.EnsureSuccessStatusCode()).Should().NotThrow();
-            // getForumsResponse.EnsureSuccessStatusCode();
-            //
-            // var result = await getForumsResponse.Content.ReadFromJsonAsync<ForumDto[]>();
-            //
-            // result!
-            //     .Should().Contain(r => r.Title == "GOVNOSOS");
         }
         
     }

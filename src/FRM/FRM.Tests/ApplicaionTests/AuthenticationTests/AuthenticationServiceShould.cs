@@ -72,7 +72,7 @@ public class AuthenticationServiceShould
     [Fact]
     public async Task SignInUser_WhenPasswordMatches()
     {
-        var password = "gondon";
+        var password = "qwerty";
         var securityManager = new SecurityManager();
         var (salt, hash) = securityManager.GeneratePasswordParts(password);
         
