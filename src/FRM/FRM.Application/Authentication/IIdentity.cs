@@ -3,17 +3,7 @@
 public interface IIdentity
 {
     Guid UserId { get; set; }
-}
-
-public class UserIdentity : IIdentity
-{
-    public UserIdentity(Guid userId)
-    {
-        UserId = userId;
-    }
-    
-    public Guid UserId { get; set; }
-    
+    Guid SessionId { get; set; }
 }
 
 public static class IdentityExtensions

@@ -25,6 +25,8 @@ public static class ProblemDetailsFactoryExtension
         {
             ErrorCodes.Gone => StatusCodes.Status410Gone,   
             ErrorCodes.NotFound => StatusCodes.Status404NotFound,
+            ErrorCodes.BadRequest => StatusCodes.Status400BadRequest,
+            ErrorCodes.Conflict => StatusCodes.Status409Conflict,
             _ => StatusCodes.Status500InternalServerError,
         }, applicationLayerException.Message);
         

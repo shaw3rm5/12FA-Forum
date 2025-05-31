@@ -45,7 +45,7 @@ public class ErrorHandlingMiddleware
                     break;
                 case ApplicationLayerException applicationException:
                     problemDetails = problemDetailsFactory.CreateFrom(context, applicationException);
-                    logger.LogError(exception, "Domain exception occured");
+                    logger.LogError(exception, "Application exception occured");
                     break;
                 default:
                     problemDetails = problemDetailsFactory.CreateProblemDetails(

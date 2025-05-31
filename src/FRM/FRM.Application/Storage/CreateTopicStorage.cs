@@ -47,7 +47,7 @@ public class CreateTopicStorage : ICreateTopicStorage
             .Select(t => new TopicDto()
             {
                 Id = t.Id,
-                Author = t.Author.Login,
+                Author = t.Author.UserName,
                 ForumId = t.ForumId,
                 CreatedAt = t.CreatedAt,
                 Title = t.Title,

@@ -18,6 +18,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.4.3" />
         <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
         <PackageReference Include="Serilog.Filters.Expressions" Version="2.1.1-dev-00054" />
         <PackageReference Include="Serilog.Sinks.Console" Version="6.0.1-dev-00953" />

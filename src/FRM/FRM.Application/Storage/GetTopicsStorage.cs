@@ -44,7 +44,7 @@ public class GetTopicsStorage : IGetTopicsStorage
                 {
                     Id = t.Id,
                     Title = t.Title,
-                    Author = t.Author.Login,
+                    Author = t.Author.UserName,
                     CreatedAt = t.CreatedAt,
                     ForumId = t.ForumId
                 })

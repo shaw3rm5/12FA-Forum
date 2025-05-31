@@ -5,12 +5,13 @@ namespace Forum.Infrastructure.ModelConfiguration;
 
 public class ForumConfiguration : IEntityTypeConfiguration<Domain.Models.Forum>
 {
-    public void Configure(EntityTypeBuilder<Domain.Models.Forum> builder)
+    public void Configure(EntityTypeBuilder<Domain.Models.Forum> forumBuilder)
     {
-        builder
+        forumBuilder.ToTable("Forums");
+        forumBuilder
             .HasKey(f => f.Id);
         
-        builder
+        forumBuilder
             .HasMany(f => f.Topics)
             .WithOne(t => t.Forum)
             .HasForeignKey(t => t.ForumId)

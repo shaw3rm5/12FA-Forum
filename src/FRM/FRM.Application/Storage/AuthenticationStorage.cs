@@ -7,24 +7,20 @@ namespace Forum.Application.Storage;
 
 public class AuthenticationStorage : IAuthenticationStorage
 {
-    private readonly IRepository<User> _userRepository;
+    private readonly IRepository<Session> _sessionRepository;
 
-    public AuthenticationStorage(IRepository<User> userRepository)
+    public AuthenticationStorage(IRepository<Session> sessionRepository)
     {
-        _userRepository = userRepository;
+        _sessionRepository = sessionRepository;
     }
-    
-    public Task<RecognisedUser?> FindUser(string login, CancellationToken cancellationToken)
-    {
-        return _userRepository
-            .Where(u => u.Login.Equals(login))
-            .AsNoTracking()
-            .Select(u => new RecognisedUser
+
+    public async Task<SessionDto?> FindSession(Guid sessionId, CancellationToken cancellationToken) =>
+        await _sessionRepository
+            .Where(s => s.Id == sessionId)
+            .Select(s => new SessionDto
             {
-                UserId = u.Id,
-                Salt = u.Salt,
-                PasswordHash = u.PasswordHash
+                UserId = s.UserId,
+                ExpiredAt = s.ExpiredAt
             })
             .FirstOrDefaultAsync(cancellationToken);
-    }
 }

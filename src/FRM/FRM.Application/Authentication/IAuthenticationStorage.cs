@@ -2,5 +2,5 @@
 
 public interface IAuthenticationStorage
 {
-    public Task<RecognisedUser?> FindUser(string login, CancellationToken cancellationToken);
+    public Task<SessionDto?> FindSession(Guid sessionId, CancellationToken cancellationToken);
 }

@@ -8,7 +8,7 @@ public class TopicConfiguration :  IEntityTypeConfiguration<Topic>
 {
     public void Configure(EntityTypeBuilder<Topic> topicBuilder)
     {
-
+        topicBuilder.ToTable("Topics");
         topicBuilder
             .HasKey(x => x.Id);
         topicBuilder.Property(x => x.Title)

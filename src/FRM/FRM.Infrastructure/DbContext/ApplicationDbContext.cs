@@ -5,19 +5,16 @@ namespace Forum.Infrastructure;
 
 public class ApplicationDbContext : DbContext
 {
-    public DbSet<Domain.Models.Forum> Forums { get; set; }
-    public DbSet<Topic> Topics { get; set; }
-    public DbSet<Comment> Comments { get; set; }
-    public DbSet<User> Users { get; set; }
-
-
+    private DbSet<Comment> Comments;
+    private DbSet<Domain.Models.Forum> Forums;
+    private DbSet<Topic> Topics;
+    private DbSet<User> Users;
+    private DbSet<Session> Sessions;
+    
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options){}
-    
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CommentConfiguration).Assembly); // add comment configuration
     }
-    
 }

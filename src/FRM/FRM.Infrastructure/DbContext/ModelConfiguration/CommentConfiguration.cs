@@ -8,6 +8,7 @@ public class CommentConfiguration : IEntityTypeConfiguration<Comment>
 {
     public void Configure(EntityTypeBuilder<Comment> commentBuilder)
     {
+        commentBuilder.ToTable("Comments");
         
         commentBuilder
             .HasKey(c => c.Id);
