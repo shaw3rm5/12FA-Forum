@@ -1,4 +1,5 @@
-﻿using Forum.Application.Authentication;
+﻿using System.Diagnostics.CodeAnalysis;
+using Forum.Application.Authentication;
 using Forum.Application.UseCases.SignIn;
 using Forum.Application.UseCases.SignUp;
 using FRM.API.Authentication;
@@ -12,6 +13,7 @@ namespace FRM.API.Controllers;
 public class AccountController : ControllerBase
 {
     [HttpPost]
+    [SuppressMessage("ReSharper.DPA", "DPA0011: High execution time of MVC action")]
     public async Task<IActionResult> SignUp(
         [FromBody] SignUpDto request,
         [FromServices] ISignUpUseCase useCase,
