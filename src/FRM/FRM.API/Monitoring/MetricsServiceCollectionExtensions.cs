@@ -10,7 +10,7 @@ internal static class MetricsServiceCollectionExtensions
             .AddOpenTelemetry()
             .WithMetrics(builder => builder
                 .AddAspNetCoreInstrumentation()
-                .AddConsoleExporter()
+                .AddMeter("FRM.Application")
                 .AddPrometheusExporter()
                 .AddView("http.server.request.duration", 
                     new ExplicitBucketHistogramConfiguration

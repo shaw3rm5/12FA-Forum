@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Forum.Application.Authentication;
 using Forum.Application.Authorization;
+using Forum.Application.Monitoring;
 using Forum.Application.Storage;
 using Forum.Application.UseCases.CreateForum;
 using Forum.Application.UseCases.CreateTopic;
@@ -63,6 +64,8 @@ public static class ApplicationDependencyInjection
             
         service
             .AddMemoryCache();
+
+        service.AddSingleton<DomainMetrics>();
 
     }
 }

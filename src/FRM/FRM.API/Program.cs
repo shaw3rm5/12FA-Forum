@@ -22,7 +22,7 @@ var app = builder.Build();
 
 app.MapControllers();
 app.MapPrometheusScrapingEndpoint();
-
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 app.UseSwagger();
 app.UseSwaggerUI();
 

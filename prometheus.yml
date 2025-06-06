@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 10s
+  scrape_timeout: 3s
+
+scrape_configs:
+  - job_name: 'frm-scraper'
+    static_configs:
+      - targets: ['YOUR_LOCAL_IP:5041']
+        labels:
+          app: frm

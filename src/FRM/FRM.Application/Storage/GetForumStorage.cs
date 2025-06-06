@@ -24,7 +24,7 @@ public class GetForumStorage : IGetForumStorage
     {
         return await _memoryCache.GetOrCreateAsync<IEnumerable<ForumDto>>(nameof(GetForums), async entry =>
         {
-            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(120);
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
             
             return await _forumRepository
                 .AsQueryable()
